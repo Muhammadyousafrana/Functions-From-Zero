@@ -6,7 +6,7 @@ test:
 	pytest -vv test_*.py
 
 lint:
-	pylint --disable=R,C,E0602, wikibot.py
+	pylint --disable=R,C,E0602,E1120 wikibot.py
 
 format:
 	black *.py
