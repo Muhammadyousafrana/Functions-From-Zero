@@ -1,21 +1,25 @@
-from fastapi import FastAPI 
+from fastapi import FastAPI
 import uvicorn
 from pydantic import BaseModel
 from my_lib.bot import scrape
-from  fastapi.responses import JSONResponse
-from fastapi.encoders import jsonable_encoder 
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
+
 
 class Wiki(BaseModel):
-    name:str
+    name: str
+
 
 app = FastAPI()
 
+
 @app.get("/")
 async def home():
-    return {"message":"hello"}
+    return {"message": "hello"}
+
 
 @app.post("/predict")
-async def  predict_story(wiki:Wiki):
+async def predict_story(wiki: Wiki):
     result = scrape(wiki.name)
     payload = {"wikipage:": result}
     json_compatible_data_item = jsonable_encoder(payload)
