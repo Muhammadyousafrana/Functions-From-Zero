@@ -37,3 +37,6 @@ jobs:
     - name: Format code
       run: |
         black *.py
+    - name: Attest Build Provenance
+      run: |
+        uses: actions/attest-build-provenance@v2.2.0
